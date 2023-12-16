@@ -1,0 +1,76 @@
+/* --------------------------------------------------------------------------------------- Text/Padding/Margin */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 100%;
+}
+
+.text-semibold {
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------------------- Background Colors */
+
+.bg-color-white {
+    background-color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------------------- Text Colors */
+
+.text-blue {
+    color: #01016F;
+}
+
+.text-red {
+    color: #D8031C;
+}
+
+/* --------------------------------------------------------------------------------------- Buttons */
+
+
+/* --------------------------------------------------------------------------------------- Icons */
+
+.icon-red {
+    color: #D8031C;
+}
+
+/* --------------------------------------------------------------------------------------- Navbar */
+
+nav ul a {
+    color: #01016F;
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------------------- Footer */
+
+
+/* --------------------------------------------------------------------------------------- Animations */
+
+
+/* --------------------------------------------------------------------------------------- Media Queries */
+
+/* Small Mobile Devices */
+@media (min-width: 280px) and (max-width: 320px) {
+    
+
+}
+
+/* Mobile Devices - Landscape */
+@media screen and (min-width: 576px) and (max-width: 991px) and (orientation: landscape) {
+    
+
+}
+
+/* Tablet / Desktop Devices - Portrait and Landscape */
+@media screen and (min-width: 768px) and (orientation: portrait) {
+    
+
+}
+
+/* Tablet / Desktop Devices - Portrait and Landscape */
+@media screen and (min-width: 992px) {
+    
+
+}

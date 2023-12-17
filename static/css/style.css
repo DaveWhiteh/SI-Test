@@ -22,14 +22,22 @@ main {
     font-weight: 600;
 }
 
-.margin-top-zero {
-    margin-top: 0;
+.no-margin-top {
+    margin-top: 0px !important;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0px !important;
 }
 
 /* --------------------------------------------------------------------------------------- Background Colors */
 
 .bg-color-white {
     background-color: #FFFFFF;
+}
+
+.bg-color-grey {
+    background-color: #F5F5F5;
 }
 
 /* --------------------------------------------------------------------------------------- Text Colors */
@@ -100,10 +108,15 @@ nav ul a {
 
 /* --------------------------------------------------------------------------------------- Footer */
 
+hr {
+    border-top: 1px solid #F5F5F5;
+}
+
 .footer-media {
     display: flex;
     justify-content: space-around;
 }
+
 
 .footer-media a i:hover {
     color: #D8031C;
@@ -113,8 +126,25 @@ nav ul a {
     -o-transition: all 0.35s ease-in-out;
 }
 
+.footer-container {
+    position: relative;
+}
+
+.footer-content {
+    position: absolute;
+    bottom: 0;
+}
+
+.footer-content-left {
+    margin-right: 0;
+}
+
+.footer-content-right {
+    margin-left: 0;
+}
+
 .footer-text {
-    font-size: 85%;
+    font-size: 90%;
 }
 
 /* --------------------------------------------------------------------------------------- Animations */

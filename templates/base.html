@@ -40,13 +40,13 @@
         <nav class="nav-extended z-depth-0 bg-color-white">
             <div class="container">
                 <div class="nav-wrapper">
-                    <a href="{{ url_for('get_items') }}" class="brand-logo left">
+                    <a href="{{ url_for('home') }}" class="brand-logo left">
                         <div class="text-blue text-semibold">Stock-<span class="text-red">!</span>t</div>
                     </a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
                             class="fas fa-bars icon-red"></i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="{{ url_for('get_items') }}">Home</a></li>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href="#">Dashboard</a></li>
                         <li><a href="#">Locations</a></li>
                         <li><a href="#">Logout</a></li>
@@ -62,7 +62,7 @@
             <li>
                 <h4 class="center-align text-blue text-semibold">Stock-<span class="text-red">!</span>t</h4>
             </li>
-            <li><a href="{{ url_for('get_items') }}">Home</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">Locations</a></li>
             <li><a href="#">Logout</a></li>
@@ -79,12 +79,12 @@
 
     <footer class="page-footer bg-color-white">
         <div class="container">
-            <div class="row valign-wrapper">
-                <div class="col l4 s12">
-                    <h5 class="text-blue text-semibold">Stock-<span class="text-red">!</span>t</h5>
-                    <p class="text-red text-semibold margin-top-zero">Take <span class="text-blue">stock</span> of your life</p>
+            <div class="row">
+                <div class="col l4 s6">
+                    <p class="text-blue text-semibold">Stock-<span class="text-red">!</span>t</p>
+                    <p class="text-red text-semibold footer-text">Take <span class="text-blue">stock</span> of your life</p>
                 </div>
-                <div class="col l4 s12 center-align">
+                <div class="col l4 s12 center-align hide-on-small-only">
                     <div class="footer-media">
                         <a href="https://www.facebook.com" target="_blank">
                             <i class="fab fa-facebook-square fa-2x icon-blue" aria-hidden="true"></i>
@@ -97,9 +97,24 @@
                         </a>
                     </div>
                 </div>
-                <div class="col l4 s12 right-align">
-                    <p class="text-red text-semibold"><span class="text-blue">Tel: </span>0123 1234567</p>
-                    <p class="text-red text-semibold margin-top-zero"><span class="text-blue">Email: </span>info@stock-it.com</p>
+                <div class="col l4 s6 right-align">
+                    <p class="text-red text-semibold footer-text"><span class="text-blue">Tel: </span>0123 1234567</p>
+                    <p class="text-red text-semibold footer-text"><span class="text-blue">Email: </span>info@stock-it.com</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center-align hide-on-med-and-up">
+                    <div class="footer-media">
+                        <a href="https://www.facebook.com" target="_blank">
+                            <i class="fab fa-facebook-square fa-2x icon-blue" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.twitter.com" target="_blank">
+                            <i class="fab fa-twitter-square fa-2x icon-blue" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank">
+                            <i class="fab fa-instagram fa-2x icon-blue" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

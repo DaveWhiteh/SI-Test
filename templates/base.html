@@ -40,8 +40,11 @@
         <nav class="nav-extended z-depth-0 bg-color-white">
             <div class="container">
                 <div class="nav-wrapper">
-                    <a href="{{ url_for('get_items') }}" class="brand-logo left"><div class="text-blue text-semibold">Stock-<span class="text-red">!</span>t</div></a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars icon-red"></i></a>
+                    <a href="{{ url_for('get_items') }}" class="brand-logo left">
+                        <div class="text-blue text-semibold">Stock-<span class="text-red">!</span>t</div>
+                    </a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
+                            class="fas fa-bars icon-red"></i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('get_items') }}">Home</a></li>
                         <li><a href="#">Dashboard</a></li>
@@ -68,8 +71,39 @@
         </ul>
     </header>
 
-    {% block content %}
-    {% endblock %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+
+    <footer class="page-footer bg-color-white">
+        <div class="container">
+            <div class="row valign-wrapper">
+                <div class="col l4 s12">
+                    <h5 class="text-blue text-semibold">Stock-<span class="text-red">!</span>t</h5>
+                    <p class="text-red text-semibold margin-top-zero">Take <span class="text-blue">stock</span> of your life</p>
+                </div>
+                <div class="col l4 s12 center-align">
+                    <div class="footer-media">
+                        <a href="https://www.facebook.com" target="_blank">
+                            <i class="fab fa-facebook-square fa-2x icon-blue" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.twitter.com" target="_blank">
+                            <i class="fab fa-twitter-square fa-2x icon-blue" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank">
+                            <i class="fab fa-instagram fa-2x icon-blue" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col l4 s12 right-align">
+                    <p class="text-red text-semibold"><span class="text-blue">Tel: </span>0123 1234567</p>
+                    <p class="text-red text-semibold margin-top-zero"><span class="text-blue">Email: </span>info@stock-it.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

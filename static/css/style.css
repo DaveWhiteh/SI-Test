@@ -126,29 +126,19 @@ hr {
     -o-transition: all 0.35s ease-in-out;
 }
 
-.footer-container {
-    position: relative;
+.footer-title {
+    font-weight: 600;
+    color: #01016F;
 }
 
-.footer-content {
-    position: absolute;
-    bottom: 0;
-}
-
-.footer-content-left {
-    margin-right: 0;
-}
-
-.footer-content-right {
-    margin-left: 0;
+.footer-subtitle {
+    font-weight: 600;
+    font-size: 120%;
+    color: #D8031C;
 }
 
 .footer-text {
     font-size: 90%;
-}
-
-.footer-subtitle {
-    font-size: 120%;
 }
 
 /* --------------------------------------------------------------------------------------- Animations */

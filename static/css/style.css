@@ -52,15 +52,17 @@ main {
 
 /* --------------------------------------------------------------------------------------- Buttons */
 
-.btn-large {
+.btn, .btn-large, .btn-small {
     font-weight: 600;
     border-radius: 32px;
     text-align: center;
-    background-color: #01016F;
+    background-color: transparent;
+    border: 1px solid #01016F;
 }
 
-.btn-large:hover {
-    background-color: #D8031C;
+.btn:hover {
+    background-color: #01016F;
+    
 }
 
 /* --------------------------------------------------------------------------------------- Icons */
@@ -82,7 +84,7 @@ nav ul a {
 
 /* --------------------------------------------------------------------------------------- Jumbotron */
 
-.jumbotron {
+.jumbotron-image {
     height: 50vh;
     background-image: url('../images/homepage_1920x768.jpg');
     background-repeat: no-repeat;
@@ -92,18 +94,21 @@ nav ul a {
     justify-content: center;
     align-items: center;
     position: relative;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+    margin: 0;
 }
 
-.jumbo-title {
-    margin-top: 0;
+.jumbo-content {
+    text-align: center;
 }
 
 .jumbo-subtitle {
-    margin-bottom: 6rem;
+    margin-bottom: 100px;
+    font-size: 125%;
 }
 
 .jumbo-text {
-    font-size: 130%;
+    font-size: 110%;
 }
 
 /* --------------------------------------------------------------------------------------- Footer */
@@ -160,12 +165,42 @@ hr {
 
 /* Tablet / Desktop Devices - Portrait and Landscape */
 @media screen and (min-width: 768px) and (orientation: portrait) {
-    
+    .jumbo-content {
+        text-align: left;
+    }
+
+    .jumbo-title {
+        font-size: 4rem;
+    }
+
+    .jumbo-subtitle {      
+        font-size: 200%;
+        max-width: 80%;
+    }
+
+    .jumbo-text {
+        font-size: 140%;
+        max-width: 60%;
+    }
 
 }
 
 /* Tablet / Desktop Devices - Portrait and Landscape */
 @media screen and (min-width: 992px) {
-    
+    .jumbo-content {
+        text-align: left;
+    }
+
+    .jumbo-title {
+        font-size: 4rem;
+    }
+
+    .jumbo-subtitle {      
+        font-size: 200%;
+    }
+
+    .jumbo-text {
+        font-size: 140%;
+    }
 
 }

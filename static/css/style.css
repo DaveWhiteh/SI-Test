@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 100%;
+    font-size: 110%;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -28,6 +28,24 @@ main {
 
 .no-margin-bottom {
     margin-bottom: 0px !important;
+}
+
+/* --------------------------------------------------------------------------------------- Containers */
+
+.container-wrapper {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    
+}
+
+.row {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.col {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* --------------------------------------------------------------------------------------- Background Colors */
@@ -58,11 +76,12 @@ main {
     text-align: center;
     background-color: transparent;
     border: 1px solid #01016F;
+    color: #01016F;
 }
 
 .btn:hover {
     background-color: #01016F;
-    
+    color: #FFFFFF;
 }
 
 /* --------------------------------------------------------------------------------------- Icons */
@@ -85,7 +104,7 @@ nav ul a {
 /* --------------------------------------------------------------------------------------- Jumbotron */
 
 .jumbotron-image {
-    height: 50vh;
+    height: 100vh;
     background-image: url('../images/homepage_1920x768.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -109,6 +128,48 @@ nav ul a {
 
 .jumbo-text {
     font-size: 110%;
+}
+
+/* --------------------------------------------------------------------------------------- Home Page */
+
+.image-position {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    display: block;
+}
+
+.image-position1 {
+    
+
+    
+}
+
+.image-position2 {
+    width: 65%;
+    margin-top: 3rem;
+}
+
+.banner-bg {
+    height: 350px;
+    background-color: rgba(90, 90, 90, 0.2);
+}
+
+.banner-text {
+    font-size: 125%;
+}
+
+.devices-title {
+    max-width: 60%;
+}
+
+.devices-text {
+    max-width: 60%;
+    font-size: 125%;
 }
 
 /* --------------------------------------------------------------------------------------- Footer */
@@ -201,6 +262,10 @@ hr {
 
     .jumbo-text {
         font-size: 140%;
+    }
+
+    .caption-text {
+        font-size: 150%;
     }
 
 }

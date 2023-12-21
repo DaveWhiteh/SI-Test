@@ -191,6 +191,7 @@ ul.sidenav li a:hover {
 
 .banner-content-image {
     text-align: center;
+    margin-top: 3rem;
 }
 
 ul {
@@ -360,6 +361,11 @@ hr {
         line-height: 3rem;
     }
 
+    .banner-content-image {
+        text-align: right;
+        margin-top: 0;
+    }
+
 }
 
 /* Tablet / Desktop Devices - Portrait and Landscape */
@@ -424,6 +430,11 @@ hr {
 
     .caption-text {
         line-height: 3rem;
+    }
+
+    .banner-content-image {
+        text-align: right;
+        margin-top: 0;
     }
 
 }

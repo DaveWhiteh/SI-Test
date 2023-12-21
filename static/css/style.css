@@ -27,15 +27,14 @@ main {
 }
 
 .no-margin-bottom {
-    margin-bottom: 0px !important;
+    margin-bottom: 0px;
 }
 
 /* --------------------------------------------------------------------------------------- Containers */
 
 .container-wrapper {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    
+    padding-top: 2rem;
+    padding-bottom: 2rem; 
 }
 
 /* --------------------------------------------------------------------------------------- Background Colors */
@@ -45,7 +44,7 @@ main {
 }
 
 .bg-color-grey {
-    background-color: #cecece;
+    background-color: #EFEFEF;
 }
 
 /* --------------------------------------------------------------------------------------- Text Colors */
@@ -88,36 +87,27 @@ main {
     color: #01016F;
 }
 
-ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-li {
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    line-height: 4rem;
-}
-
-li span {
-    display: flex;
-    font-size: 125%;
-}
-
-li i {
-    margin-right: 1rem;
-}
-
-li i.fa-location-dot {
-    margin-right: 1.5rem;
-}
-
 /* --------------------------------------------------------------------------------------- Navbar */
 
 nav ul a {
     color: #01016F;
     font-weight: 500;
+}
+
+nav ul a:hover {
+    background-color: #EFEFEF;
+}
+
+ul.sidenav li a {
+    color: #01016F;
+}
+
+ul.sidenav li a:hover {
+    background-color: #EFEFEF;
+}
+
+.sidenav li a {
+    height: 38px;
 }
 
 /* --------------------------------------------------------------------------------------- Jumbotron */
@@ -136,8 +126,13 @@ nav ul a {
     margin: 0;
 }
 
+#jumbotron .container {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .jumbo-content {
-    text-align: center;
+    text-align: left;
 }
 
 .jumbo-subtitle {
@@ -145,14 +140,15 @@ nav ul a {
     font-size: 125%;
 }
 
-.jumbo-text {
-    
+.jumbo-text {  
     font-size: 110%;
 }
 
+
+
 /* --------------------------------------------------------------------------------------- Home Page */
 
-.image-position {
+.image {
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -164,36 +160,69 @@ nav ul a {
 }
 
 .image-position1 {
-   width: 100%;
-
-    
+   width: 100%;   
 }
 
-.image-position2 {
-    width: 65%;
-    margin-top: 3rem;
+.banner-image {
+    width: 80%;
 }
 
 .banner-bg {
     height: 350px;
-    background-color: #cecece;
+    background-color: #EFEFEF;
 }
 
 .banner-title {
+    font-size: 2rem;
+    margin-top: 0;
     margin-bottom: 3rem;
+    line-height: 2.5rem;
 }
 
 .banner-content {
-    display: flex;
-    align-items: center;
+    text-align: left;
+    margin-bottom: 0;
 }
 
 .banner-text {
     font-size: 125%;
 }
 
+.banner-content-image {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li.banner-list {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    line-height: 1.75rem;
+}
+
+li.banner-list:last-child {
+    margin-bottom: 3rem;
+}
+
+li.banner-list span {
+    font-size: 120%;
+}
+
+li i {
+    margin-right: 1rem;
+}
+
+li i.fa-location-dot {
+    margin-right: 1.5rem;
+}
+
 .caption-text {
-    line-height: 3rem;
+    font-size: 110%;
+    line-height: 2.25rem;
 }
 
 .devices-title {
@@ -238,13 +267,17 @@ hr {
 }
 
 .footer-subtitle {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 120%;
     color: #D8031C;
 }
 
 .footer-text {
     font-size: 90%;
+}
+
+.page-footer .footer-copyright {
+    background-color: #FFFFFF;
 }
 
 /* --------------------------------------------------------------------------------------- Animations */
@@ -284,6 +317,49 @@ hr {
         max-width: 60%;
     }
 
+    .banner-title {
+        margin-bottom: 3rem;
+    }
+
+    .banner-content {
+        display: flex;
+        align-items: center;
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    li.banner-list {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        line-height: 4rem;
+    }
+    
+    li.banner-list span {
+        display: flex;
+        font-size: 125%;
+    }
+    
+    li i {
+        margin-right: 1rem;
+    }
+    
+    li i.fa-location-dot {
+        margin-right: 1.5rem;
+    }
+
+    .banner-image {
+        width: 65%;
+        margin-top: 3rem;
+    }
+
+    .caption-text {
+        line-height: 3rem;
+    }
+
 }
 
 /* Tablet / Desktop Devices - Portrait and Landscape */
@@ -306,6 +382,49 @@ hr {
 
     .caption-text {
         font-size: 150%;
+    }
+
+    .banner-title {
+        margin-bottom: 3rem;
+    }
+
+    .banner-content {
+        display: flex;
+        align-items: center;
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    li.banner-list {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        line-height: 4rem;
+    }
+    
+    li.banner-list span {
+        display: flex;
+        font-size: 125%;
+    }
+    
+    li i {
+        margin-right: 1rem;
+    }
+    
+    li i.fa-location-dot {
+        margin-right: 1.5rem;
+    }
+
+    .banner-image {
+        width: 65%;
+        margin-top: 3rem;
+    }
+
+    .caption-text {
+        line-height: 3rem;
     }
 
 }

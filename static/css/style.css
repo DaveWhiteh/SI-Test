@@ -47,6 +47,10 @@ main {
     background-color: #EFEFEF;
 }
 
+.bg-color-red {
+    background-color: #D8031C;
+}
+
 /* --------------------------------------------------------------------------------------- Text Colors */
 
 .text-blue {
@@ -243,6 +247,16 @@ li i.fa-location-dot {
     margin: 0;
 }
 
+
+.register {
+
+}
+
+.register-subtitle {
+    margin-bottom: 0;
+    font-size: 125%;
+}
+
 /* --------------------------------------------------------------------------------------- Footer */
 
 hr {
@@ -264,6 +278,7 @@ hr {
 }
 
 .footer-title {
+    margin-top: 0;
     font-weight: 600;
     color: #01016F;
 }

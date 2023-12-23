@@ -77,10 +77,10 @@
         </ul>
     </header>
 
-    <main class="">
+    <main class="{% if (request.endpoint == 'login' or request.endpoint == 'register') %}bg-color-red{% endif %}">
         {% block content %}
         {% endblock %}
-    </main>   
+    </main>
 
     <footer class="page-footer bg-color-grey">
         

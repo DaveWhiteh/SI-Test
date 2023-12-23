@@ -47,7 +47,7 @@
                             class="fas fa-bars icon-red"></i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
                         <li><a href="#">Locations</a></li>
                         <li><a href="#">Logout</a></li>
                         <li><a href="{{ url_for('login') }}">Login</a></li>
@@ -63,7 +63,7 @@
                 <h4 class="center-align text-blue text-semibold">Stock-<span class="text-red">!</span>t</h4>
             </li>
             <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
             <li><a href="#">Locations</a></li>
             <li><a href="#">Logout</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>

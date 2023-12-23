@@ -82,8 +82,9 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/dashboard", methods=["GET", "POST"])
+@app.route("/dashboard/", methods=["GET", "POST"])
 def dashboard():
+    # get the total number of locations from db
     if session["user"]:
         return render_template("dashboard.html")
 

@@ -101,6 +101,12 @@ def dashboard(locations,items,quantity):
     return redirect(url_for("login"))
 
 
+@app.route("/get_locations")
+def get_locations():
+    locations = mongo.db.locations.find()
+    return render_template("locations.html", locations=locations)
+
+
 @app.route("/logout")
 def logout():
     # remove user from session cookie

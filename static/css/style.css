@@ -274,14 +274,36 @@ li i.fa-location-dot {
     font-size: 3rem;
 }
 
+/* --------------------------------------------------------------------------------------- Locations */
+
+.locations {
+    color: #6497BF;
+    background-color: #F5F5F5;
+    padding: 20px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+a {
+    color: inherit; 
+}
+
+.dropdown-trigger {
+    font-size: 2rem;
+    display: flex;
+    vertical-align: center;
+    color: #D8031C;
+}
+
+#dropdown-actions a {
+    color: #6497BF;
+    font-size: 90%;
+}
+
 /* --------------------------------------------------------------------------------------- Footer */
 
 hr {
     border-top: 1px solid #F5F5F5;
-}
-
-.register {
-    
 }
 
 .footer-media {

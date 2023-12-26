@@ -82,11 +82,13 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/dashboard/", methods=["GET", "POST"])
-def dashboard():
+@app.route("/dashboard/<locations>", methods=["GET", "POST"])
+def dashboard(locations):
     # get the total number of locations from db
+    locations = locations_count()
+
     if session["user"]:
-        return render_template("dashboard.html")
+        return render_template("dashboard.html", locations=locations)
 
     return redirect(url_for("login"))
 
@@ -97,6 +99,24 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+
+def locations_count():
+    # Get the current user_id from db
+    user = mongo.db.users.find_one({"username": session["user"]})
+    # For testing purposes
+    print(user)
+    user_id = str(user["_id"])
+    #For testing purposes
+    print(user_id)
+
+    # Get the count of the locations from db
+    count = mongo.db.locations.count_documents({"user_id": user_id})
+    # For testing purposes
+    print(count)
+
+    return count
 
 
 if __name__ == "__main__":

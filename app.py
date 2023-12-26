@@ -111,7 +111,7 @@ def logout():
 
 @app.route("/get_locations")
 def get_locations():
-    locations = mongo.db.locations.find()
+    locations = list(mongo.db.locations.find().sort("location_name", 1))
     return render_template("locations.html", locations=locations)
 
 
@@ -142,6 +142,17 @@ def edit_location(location_id):
 
     location = mongo.db.locations.find_one({"_id": ObjectId(location_id)})
     return render_template("edit_location.html", location=location)
+
+
+@app.route("/delete_location_prompt/<location_name>")
+def delete_location_prompt(location_name):
+    return render_template("delete_location.html", location_name=location_name)
+
+
+@app.route("/delete_location/<location_id>", methods=["GET", "POST"])
+def delete_location(location_id):
+    mongo.db.locations.delete_one({"_id": ObjectId(location_id)})
+    return redirect(url_for("get_locations"))
 
 
 def get_user_id():

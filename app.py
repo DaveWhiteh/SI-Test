@@ -101,18 +101,33 @@ def dashboard(locations,items,quantity):
     return redirect(url_for("login"))
 
 
-@app.route("/get_locations")
-def get_locations():
-    locations = mongo.db.locations.find()
-    return render_template("locations.html", locations=locations)
-
-
 @app.route("/logout")
 def logout():
     # remove user from session cookie
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/get_locations")
+def get_locations():
+    locations = mongo.db.locations.find()
+    return render_template("locations.html", locations=locations)
+
+
+@app.route("/add_location", methods=["GET", "POST"])
+def add_location():
+    if request.method == "POST":
+        user_id = get_user_id()
+        location = {
+            "user_id": user_id,
+            "location_name": request.form.get("location_name")
+        }
+        mongo.db.locations.insert_one(location)
+        return redirect(url_for("get_locations"))
+
+    return render_template("add_location.html")
+
 
 def get_user_id():
     # Get the current user_id from db

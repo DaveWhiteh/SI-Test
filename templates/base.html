@@ -77,13 +77,13 @@
         </ul>
     </header>
 
-    <main class="{% if (request.endpoint == 'login' or request.endpoint == 'register') %}bg-color-red{% elif request.endpoint == 'dashboard' %}bg-color-grey{% endif %}">
+    <main class="{% if (request.endpoint == 'login' or request.endpoint == 'register') %}bg-color-red{% elif request.endpoint == 'dashboard' %}bg-color-grey{% elif request.endpoint == 'add_location' %}bg-color-dark-grey{% endif %}">
         {% block content %}
         {% endblock %}
     </main>
 
     <footer class="page-footer bg-color-white">
-        {% if (request.endpoint == 'get_locations' or request.endpoint == 'get_items') %}
+        {% if (request.endpoint == 'get_locations' or request.endpoint == 'get_items' ) %}
         <hr>
         {% endif %}
         <div class="container hide-on-small-only">

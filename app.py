@@ -129,6 +129,21 @@ def add_location():
     return render_template("add_location.html")
 
 
+@app.route("/edit_location/<location_id>", methods=["GET", "POST"])
+def edit_location(location_id):
+    if request.method == "POST":
+        user_id = get_user_id()
+        submit = {
+            "user_id": user_id,
+            "location_name": request.form.get("location_name")
+        }
+        mongo.db.locations.replace_one({"_id": ObjectId(location_id)}, submit)
+        return redirect(url_for("get_locations"))
+
+    location = mongo.db.locations.find_one({"_id": ObjectId(location_id)})
+    return render_template("edit_location.html", location=location)
+
+
 def get_user_id():
     # Get the current user_id from db
     user = mongo.db.users.find_one({"username": session["user"]})

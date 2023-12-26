@@ -51,7 +51,10 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-        return redirect(url_for("dashboard"))
+        locations = locations_count()
+        items = items_count()
+        quantity = quantity_count()
+        return redirect(url_for("dashboard", locations=locations, items=items, quantity=quantity))
     return render_template("register.html")
 
 
@@ -68,7 +71,10 @@ def login():
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(request.form.get("username")))
-                    return redirect(url_for("dashboard"))
+                    locations = locations_count()
+                    items = items_count()
+                    quantity = quantity_count()
+                    return redirect(url_for("dashboard", locations=locations, items=items, quantity=quantity))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -82,13 +88,15 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/dashboard/<locations>", methods=["GET", "POST"])
-def dashboard(locations):
+@app.route("/dashboard/<locations>/<items>/<quantity>", methods=["GET", "POST"])
+def dashboard(locations,items,quantity):
     # get the total number of locations from db
     locations = locations_count()
+    items = items_count()
+    quantity = quantity_count()
 
     if session["user"]:
-        return render_template("dashboard.html", locations=locations)
+        return render_template("dashboard.html", locations=locations, items=items, quantity=quantity)
 
     return redirect(url_for("login"))
 
@@ -100,9 +108,7 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
-
-
-def locations_count():
+def get_user_id():
     # Get the current user_id from db
     user = mongo.db.users.find_one({"username": session["user"]})
     # For testing purposes
@@ -111,10 +117,44 @@ def locations_count():
     #For testing purposes
     print(user_id)
 
+    return user_id
+
+
+def locations_count():
+    # Get the current user_id from db
+    user_id = get_user_id()
+
     # Get the count of the locations from db
     count = mongo.db.locations.count_documents({"user_id": user_id})
     # For testing purposes
     print(count)
+
+    return count
+
+
+def items_count():
+    # Get the current user_id from db
+    user_id = get_user_id()
+
+    # Get the count of the locations from db
+    count = mongo.db.items.count_documents({"user_id": user_id})
+    # For testing purposes
+    print(count)
+
+    return count
+
+
+def quantity_count():
+    # Get the current user_id from db
+    user_id = get_user_id()
+
+    # Get the sum of the items quantity from db
+    total_quantity = mongo.db.items.aggregate([{"$group": {"_id": user_id, "total": {"$sum": "$quantity"}}}])
+
+    for quantity in total_quantity:
+        count = quantity.get('total')
+        # For testing purposes
+        print(count)
 
     return count
 

@@ -167,13 +167,80 @@ def delete_location_confirm(location_id):
 
 @app.route("/get_items/<location_id>")
 def get_items(location_id):
+    location = mongo.db.locations.find_one({"_id": ObjectId(location_id)})
+    location_name = location["location_name"]
     items = list(mongo.db.items.find({"location_id": {'$eq': location_id}}))
-    return render_template("items.html", items=items, location_id=location_id)
+    return render_template("items.html", items=items, location_id=location_id, location_name=location_name)
 
 
 @app.route("/add_item/<location_id>", methods=["GET", "POST"])
 def add_item(location_id):
+    if request.method == "POST":
+        user_id = get_user_id()
+        item = {
+            "user_id": user_id,
+            "location_id": location_id,
+            "item_name": request.form.get("item_name"),
+            "quantity": request.form.get("quantity"),
+            "min_quantity": request.form.get("min_quantity"),
+            "purchase_date": request.form.get("purchase_date"),
+            "expiry_date": request.form.get("expiry_date"),
+            "price": request.form.get("price"),
+            "note": request.form.get("note")
+        }
+        mongo.db.items.insert_one(item)
+        flash("Item Successfully Added")
+        return redirect(url_for("get_items", location_id=location_id))
+
     return render_template("add_item.html", location_id=location_id)
+
+
+@app.route("/edit_item/<location_id>/<item_id>", methods=["GET", "POST"])
+def edit_item(location_id,item_id):
+    if request.method == "POST":
+        user_id = get_user_id()
+        submit = {
+            "user_id": user_id,
+            "location_id": location_id,
+            "item_name": request.form.get("item_name"),
+            "quantity": request.form.get("quantity"),
+            "min_quantity": request.form.get("min_quantity"),
+            "purchase_date": request.form.get("purchase_date"),
+            "expiry_date": request.form.get("expiry_date"),
+            "price": request.form.get("price"),
+            "note": request.form.get("note")
+        }
+        mongo.db.items.replace_one({"_id": ObjectId(item_id)}, submit)
+        flash("Item Successfully Edited")
+        return redirect(url_for("get_items", location_id=location_id))
+
+    item = mongo.db.items.find_one({"_id": ObjectId(item_id)})
+    return render_template("edit_item.html", location_id=location_id, item=item)
+
+
+@app.route("/delete_item/<location_id>/<item_id>")
+def delete_item(location_id,item_id):
+    if "user" not in session:
+        flash ("You must be logged in")
+        return redirect("login")
+
+    item = mongo.db.items.find_one({"_id": ObjectId(item_id)})
+    if not item:
+        flash("Item not found")
+        return redirect(url_for("get_items", location_id=location_id))
+
+    return render_template("delete_item.html", location_id=location_id, item=item)
+
+
+@app.route("/delete_item_confirm/<location_id>/<item_id>", methods=["GET", "POST"])
+def delete_item_confirm(location_id,item_id):
+    if request.method == "POST":
+        mongo.db.items.delete_one({"_id": ObjectId(item_id)})
+        flash("Item Successfully Deleted")
+        return redirect(url_for("get_items", location_id=location_id))
+    else:
+        flash("Invalid request")
+        return redirect(url_for("get_items", location_id=location_id))
 
 
 def get_user_id():

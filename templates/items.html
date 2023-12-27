@@ -33,13 +33,21 @@
 
 <div class="container-wrapper-1">
     <div class="container">
-        <div class="row">
+        <div class="row valign-wrapper">
             <div class="col s12">
                 <ul class="collapsible">
                     {% for item in items %}
                     <li>
                         <div class="collapsible-header">
-                            <i class="fas fa-caret-right icon-red"></i>{{ item.item_name }}
+                            <div>
+                                <i class="fas fa-caret-right icon-red"></i>{{ item.item_name }}
+                            </div>
+                            <div class="col s9">
+                                <a href="{{ url_for('delete_item', location_id=location_id, item_id=item._id) }}"
+                                    class="btn btn--cta btn--cancel right">Delete</a>
+                                <a href="{{ url_for('edit_item', location_id=location_id, item_id=item._id) }}"
+                                    class="btn btn--edit right">Edit</a>
+                            </div> 
                         </div>
                         <div class="collapsible-body">
                             <p>Quantity: {{ item.quantity }}</p>
@@ -49,7 +57,7 @@
                             <p>Price: {{ item.price }}</p>
                             <p>Note: {{ item.note }}</p>
                         </div>
-                    </li>
+                    </li> 
                     {% endfor %}
                 </ul>
             </div>

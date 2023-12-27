@@ -5,10 +5,10 @@
     <div class="container">
         <div class="row no-margin-bottom">
             <div class="col s6">
-                <h5 class="white-text no-margin-top no-margin-bottom">Locations > {{ location_name }}</h5>
+                <a href="{{ url_for('get_locations') }}"><h5 class="white-text no-margin-top no-margin-bottom">Locations > {{ location_name }}</h5></a>
             </div>
             <div class="col s6 right-align">
-                <a href="{{ url_for('add_location') }}" class="btn">Add Item</a>
+                <a href="{{ url_for('add_item', location_id=location_id) }}" class="btn">Add Item</a>
             </div>
         </div>
     </div>

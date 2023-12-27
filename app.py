@@ -118,6 +118,7 @@ def add_location():
             "location_name": request.form.get("location_name")
         }
         mongo.db.locations.insert_one(location)
+        flash("Location Successfully Added")
         return redirect(url_for("get_locations"))
 
     return render_template("add_location.html")
@@ -132,6 +133,7 @@ def edit_location(location_id):
             "location_name": request.form.get("location_name")
         }
         mongo.db.locations.replace_one({"_id": ObjectId(location_id)}, submit)
+        flash("Location Successfully Edited")
         return redirect(url_for("get_locations"))
 
     location = mongo.db.locations.find_one({"_id": ObjectId(location_id)})
@@ -166,7 +168,12 @@ def delete_location_confirm(location_id):
 @app.route("/get_items/<location_id>")
 def get_items(location_id):
     items = list(mongo.db.items.find({"location_id": {'$eq': location_id}}))
-    return render_template("items.html", items=items)
+    return render_template("items.html", items=items, location_id=location_id)
+
+
+@app.route("/add_item/<location_id>", methods=["GET", "POST"])
+def add_item(location_id):
+    return render_template("add_item.html", location_id=location_id)
 
 
 def get_user_id():

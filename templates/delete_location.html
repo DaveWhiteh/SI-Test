@@ -13,17 +13,17 @@
 
 <div class="container container-wrapper">
     <div class="row no-margin-bottom">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_location', location_id=location._id) }}">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('delete_location_confirm', location_id=location._id) }}">
             <div class="card-panel">
                 <!-- location_name -->
                 <div class="row no-margin-bottom">
                     <div class="input-field col s12">
-                        <p class="text-light-blue text-medium">Are you sure you want to delete the location "{{ location_name }}"?</p>
+                        <p class="text-light-blue text-medium">Are you sure you want to delete the location {{ location_name }}?</p>
                     </div>
                 </div>
                 <!-- cancel / submit -->
                 <div class="row center-align">
-                    <a href="{{ url_for('delete_location', location_id=location._id) }}" class="btn btn--cancel">
+                    <a href="{{ url_for('get_locations') }}" class="btn btn--cancel">
                         Cancel
                     </a>
                     <button type="submit" class="btn">

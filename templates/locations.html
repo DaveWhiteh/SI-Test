@@ -15,25 +15,18 @@
 </div>
 
 <div class="container container-wrapper">
-    <div class="row">
-        <div class="col s12">
-            <ul class="no-margin-top">
-                {% for location in locations %}
-                <li class="locations">
-                    <a href="">{{ location.location_name }}</a>
-                    <!-- Dropdown Trigger -->
-                    <a class='dropdown-trigger right' href='#' data-target='dropdown-actions'><i class="fas fa-ellipsis-vertical"></i></a>
-
-                    <!-- Dropdown Structure -->
-                    <ul id='dropdown-actions' class='dropdown-content'>
-                        <li><a href="{{ url_for('edit_location', location_id=location._id) }}">edit</a></li>
-                        <li><a href="{{ url_for('delete_location', location_id=location._id) }}">delete</a></li>
-                    </ul>
-                </li>
-                {% endfor %}
-            </ul>
+    {% for location in locations %}
+    <div class="row locations valign-wrapper">       
+        <div class="col s3">
+                <a href="">{{ location.location_name }}</a>
         </div>
+        <div class="col s9">
+                <a href="{{ url_for('delete_location', location_id=location._id) }}"
+                    class="btn btn--cta btn--cancel right">Delete</a>
+                <a href="{{ url_for('edit_location', location_id=location._id) }}" class="btn btn--edit right">Edit</a>
+        </div>       
     </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

@@ -99,6 +99,18 @@ main {
     background-color: #D8031C;
 }
 
+.btn--edit {
+    background-color: #6497BF;
+}
+
+.btn--cta {
+    margin-left: 10px;
+}
+
+.valign-wrapper {
+    flex-wrap: wrap;
+}
+
 /* --------------------------------------------------------------------------------------- Icons */
 
 .icon-red {

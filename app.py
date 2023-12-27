@@ -144,15 +144,29 @@ def edit_location(location_id):
     return render_template("edit_location.html", location=location)
 
 
-@app.route("/delete_location_prompt/<location_name>")
-def delete_location_prompt(location_name):
-    return render_template("delete_location.html", location_name=location_name)
-
-
-@app.route("/delete_location/<location_id>", methods=["GET", "POST"])
+@app.route("/delete_location/<location_id>")
 def delete_location(location_id):
-    mongo.db.locations.delete_one({"_id": ObjectId(location_id)})
-    return redirect(url_for("get_locations"))
+    if "user" not in session:
+        flash ("You must be logged in")
+        return redirect("login")
+
+    location = mongo.db.locations.find_one({"_id": ObjectId(location_id)})
+    if not location:
+        flash("Location not found")
+        return redirect(url_for("get_locations"))
+
+    return render_template("delete_location.html", location=location)
+
+
+@app.route("/delete_location_confirm/<location_id>", methods=["GET", "POST"])
+def delete_location_confirm(location_id):
+    if request.method == "POST":
+        mongo.db.locations.delete_one({"_id": ObjectId(location_id)})
+        flash("Location Successfully Deleted")
+        return redirect(url_for("get_locations"))
+    else:
+        flash("Invalid request")
+        return redirect(url_for("get_locations"))
 
 
 def get_user_id():

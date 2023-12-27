@@ -1,14 +1,60 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {% for item in items %}
-        {{ item.item_name }}<br>
-        {{ item.quantity }}<br>
-        {{ item.min_quantity }}<br>
-        {{ item.purchase_date }}<br>
-        {{ item.expiry_date }}<br>
-        {{ item.price }}<br>
-        {{ item.note }}<br>
-    {% endfor %}
+<div class="container-wrapper bg-color-red">
+    <div class="container">
+        <div class="row no-margin-bottom">
+            <div class="col s6">
+                <h5 class="white-text no-margin-top no-margin-bottom">Locations > {{ location_name }}</h5>
+            </div>
+            <div class="col s6 right-align">
+                <a href="{{ url_for('add_location') }}" class="btn">Add Item</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-wrapper-1 bg-color-light-blue center-align">
+    <div class="container">
+        <div class="row no-margin-bottom">
+            <!-- flash messages -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="col s12">
+                        <p class="white-text text-medium no-margin-top no-margin-bottom">{{ message }}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</div>
+
+<div class="container-wrapper-1">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <ul class="collapsible">
+                    {% for item in items %}
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="fas fa-caret-right icon-red"></i>{{ item.item_name }}
+                        </div>
+                        <div class="collapsible-body">
+                            <p>Quantity: {{ item.quantity }}</p>
+                            <p>Min Quantity: {{ item.min_quantity }}</p>
+                            <p>Purchase Date: {{ item.purchase_date }}</p>
+                            <p>Expiry Date: {{ item.expiry_date }}</p>
+                            <p>Price: {{ item.price }}</p>
+                            <p>Note: {{ item.note }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

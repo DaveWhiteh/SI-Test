@@ -23,12 +23,6 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/get_items")
-def get_items():
-    items = mongo.db.items.find()
-    return render_template("items.html", items=items)
-
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -167,6 +161,12 @@ def delete_location_confirm(location_id):
     else:
         flash("Invalid request")
         return redirect(url_for("get_locations"))
+
+
+@app.route("/get_items/<location_id>")
+def get_items(location_id):
+    items = list(mongo.db.items.find({"location_id": {'$eq': location_id}}))
+    return render_template("items.html", items=items)
 
 
 def get_user_id():

@@ -84,6 +84,9 @@ def login():
 
 @app.route("/dashboard/<locations>/<items>/<quantity>", methods=["GET", "POST"])
 def dashboard(locations,items,quantity):
+    if "user" not in session:
+        flash ("You must be logged in")
+
     # get the total number of locations from db
     locations = locations_count()
     items = items_count()
@@ -105,12 +108,20 @@ def logout():
 
 @app.route("/get_locations")
 def get_locations():
+    if "user" not in session:
+        flash ("You must be logged in")
+        return redirect(url_for("login"))
+
     locations = list(mongo.db.locations.find().sort("location_name", 1))
     return render_template("locations.html", locations=locations)
 
 
 @app.route("/add_location", methods=["GET", "POST"])
 def add_location():
+    if "user" not in session:
+        flash ("You must be logged in")
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         user_id = get_user_id()
         location = {
@@ -126,6 +137,10 @@ def add_location():
 
 @app.route("/edit_location/<location_id>", methods=["GET", "POST"])
 def edit_location(location_id):
+    if "user" not in session:
+        flash ("You must be logged in")
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         user_id = get_user_id()
         submit = {
@@ -144,7 +159,7 @@ def edit_location(location_id):
 def delete_location(location_id):
     if "user" not in session:
         flash ("You must be logged in")
-        return redirect("login")
+        return redirect(url_for("login"))
 
     location = mongo.db.locations.find_one({"_id": ObjectId(location_id)})
     if not location:
@@ -167,6 +182,10 @@ def delete_location_confirm(location_id):
 
 @app.route("/get_items/<location_id>")
 def get_items(location_id):
+    if "user" not in session:
+        flash ("You must be logged in")
+        return redirect(url_for("login"))
+
     location = mongo.db.locations.find_one({"_id": ObjectId(location_id)})
     location_name = location["location_name"]
     items = list(mongo.db.items.find({"location_id": {'$eq': location_id}}))
@@ -175,6 +194,10 @@ def get_items(location_id):
 
 @app.route("/add_item/<location_id>", methods=["GET", "POST"])
 def add_item(location_id):
+    if "user" not in session:
+        flash ("You must be logged in")
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         user_id = get_user_id()
         item = {
@@ -197,6 +220,10 @@ def add_item(location_id):
 
 @app.route("/edit_item/<location_id>/<item_id>", methods=["GET", "POST"])
 def edit_item(location_id,item_id):
+    if "user" not in session:
+        flash ("You must be logged in")
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         user_id = get_user_id()
         submit = {
@@ -222,7 +249,7 @@ def edit_item(location_id,item_id):
 def delete_item(location_id,item_id):
     if "user" not in session:
         flash ("You must be logged in")
-        return redirect("login")
+        return redirect(url_for("login"))
 
     item = mongo.db.items.find_one({"_id": ObjectId(item_id)})
     if not item:
@@ -292,6 +319,11 @@ def quantity_count():
         print(count)
 
     return count
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
 
 
 if __name__ == "__main__":

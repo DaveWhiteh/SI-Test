@@ -30,6 +30,10 @@ main {
     margin-bottom: 0px;
 }
 
+input, textarea[type=text] {
+    color: #01016F;
+}
+
 /* --------------------------------------------------------------------------------------- Containers */
 
 .container-wrapper {
@@ -304,17 +308,7 @@ a {
     color: inherit; 
 }
 
-.dropdown-trigger {
-    font-size: 2rem;
-    display: flex;
-    vertical-align: center;
-    color: #D8031C;
-}
 
-#dropdown-actions a {
-    color: #6497BF;
-    font-size: 90%;
-}
 
 /* --------------------------------------------------------------------------------------- items */
 

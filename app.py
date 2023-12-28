@@ -112,7 +112,9 @@ def get_locations():
         flash ("You must be logged in")
         return redirect(url_for("login"))
 
-    locations = list(mongo.db.locations.find().sort("location_name", 1))
+    user_id = get_user_id()
+
+    locations = list(mongo.db.locations.find({"user_id": {'$eq': user_id}}).sort("location_name", 1))
     return render_template("locations.html", locations=locations)
 
 
@@ -128,6 +130,13 @@ def add_location():
             "user_id": user_id,
             "location_name": request.form.get("location_name")
         }
+
+        location_name_exist = mongo.db.locations.count_documents({"user_id": user_id, "location_name": {'$eq': request.form.get("location_name")}})
+
+        if location_name_exist >= 1:
+            flash ("Location already exists")
+            return redirect(url_for("add_location"))
+
         mongo.db.locations.insert_one(location)
         flash("Location Successfully Added")
         return redirect(url_for("get_locations"))
@@ -147,6 +156,13 @@ def edit_location(location_id):
             "user_id": user_id,
             "location_name": request.form.get("location_name")
         }
+
+        location_name_exist = mongo.db.locations.count_documents({"user_id": user_id, "location_name": {'$eq': request.form.get("location_name")}})
+
+        if location_name_exist >= 1:
+            flash ("Location already exists")
+            return redirect(url_for("edit_location", location_id=location_id))
+
         mongo.db.locations.replace_one({"_id": ObjectId(location_id)}, submit)
         flash("Location Successfully Edited")
         return redirect(url_for("get_locations"))
@@ -211,6 +227,16 @@ def add_item(location_id):
             "price": request.form.get("price"),
             "note": request.form.get("note")
         }
+
+        location = mongo.db.locations.find_one({"_id": ObjectId(location_id)})
+        location_name = location["location_name"]
+
+        item_name_exist = mongo.db.items.count_documents({"user_id": user_id, "item_name": {'$eq': request.form.get("item_name")}})
+
+        if item_name_exist >= 1:
+            flash ("Item already exists")
+            return redirect(url_for("add_item", location_id=location_id))
+
         mongo.db.items.insert_one(item)
         flash("Item Successfully Added")
         return redirect(url_for("get_items", location_id=location_id))
@@ -223,12 +249,16 @@ def edit_item(location_id,item_id):
     if "user" not in session:
         flash ("You must be logged in")
         return redirect(url_for("login"))
+    
+    user_id = get_user_id()
 
     if request.method == "POST":
-        user_id = get_user_id()
+        location = mongo.db.locations.find_one({"location_name": {'$eq': request.form.get("location_name")}})
+        new_location_id = str(location["_id"])
+
         submit = {
             "user_id": user_id,
-            "location_id": location_id,
+            "location_id": new_location_id,
             "item_name": request.form.get("item_name"),
             "quantity": request.form.get("quantity"),
             "min_quantity": request.form.get("min_quantity"),
@@ -237,12 +267,14 @@ def edit_item(location_id,item_id):
             "price": request.form.get("price"),
             "note": request.form.get("note")
         }
+
         mongo.db.items.replace_one({"_id": ObjectId(item_id)}, submit)
         flash("Item Successfully Edited")
-        return redirect(url_for("get_items", location_id=location_id))
+        return redirect(url_for("get_items", location_id=new_location_id))
 
     item = mongo.db.items.find_one({"_id": ObjectId(item_id)})
-    return render_template("edit_item.html", location_id=location_id, item=item)
+    locations = mongo.db.locations.find({"user_id": {'$eq': user_id}}).sort("location_name", 1)
+    return render_template("edit_item.html", location_id=location_id, locations=locations, item=item)
 
 
 @app.route("/delete_item/<location_id>/<item_id>")

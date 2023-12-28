@@ -15,6 +15,18 @@
     <div class="row no-margin-bottom">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_item', location_id=location_id, item_id=item._id) }}">
             <div class="card-panel">
+                <!-- location name -->
+                <div class="row no-margin-bottom">
+                    <div class="input-field col s12">
+                        <select id="location_name" name="location_name" class="validate" required>
+                            <option class="text-blue" value="" disabled selected>Choose Location</option>
+                            {% for location in locations %}
+                                <option class="text-blue" value="{{ location.location_name }}">{{ location.location_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="location_name">Location</label>
+                    </div>
+                </div>
                 <!-- item name -->
                 <div class="row no-margin-bottom">
                     <div class="input-field col s12">
@@ -66,6 +78,18 @@
                     <button type="submit" class="btn">
                         Edit Item
                     </button>
+                </div>
+                <div>
+                    <!-- flash messages -->
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                            <div class="row flashes">
+                                <p class="light-blue lighten-4 center-align">{{ message }}</p>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                 </div>
             </div>
         </form>

@@ -313,7 +313,25 @@ a {
     color: inherit; 
 }
 
+.collapsible {
+    margin-top: 0;
+}
 
+.collapsible-header {
+    margin-bottom: 20px;
+    background-color: #F5F5F5;
+    box-shadow: none;
+    border-radius: 8px;
+    padding: 20px 20px;
+}
+
+.collapsible-header i {
+    width: 0;
+}
+
+.locations-icon {
+    font-size: 1.6rem;
+}
 
 /* --------------------------------------------------------------------------------------- items */
 
@@ -325,8 +343,14 @@ a {
     transform: rotate(90deg);
 }
 
-.card-panel {
-    
+.card-panel.items {
+    padding: 5px 5px;
+    border-radius: 16px;
+}
+
+.col.s12.items {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* --------------------------------------------------------------------------------------- Footer */
